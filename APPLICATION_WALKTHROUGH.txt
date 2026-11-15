@@ -1,0 +1,297 @@
+================================================================================
+                    OEM FINANCE LEAD MANAGEMENT PORTAL
+              COMPLETE END-TO-END APPLICATION WALKTHROUGH
+================================================================================
+
+1. APPLICATION OVERVIEW & ARCHITECTURE
+--------------------------------------------------------------------------------
+The OEM Finance Lead Portal is an enterprise-grade automotive financial 
+management platform connecting Automotive OEMs, dealer distribution networks, 
+and Tier-1 national banking partners/NBFCs (HDFC, SBI, ICICI, Axis, Kotak, 
+Bajaj Finance). 
+
+Key Architecture Highlights:
+- Multi-Lender Parallel API Bidding: When a dealer inputs a customer lead, loan
+  requests broadcast in parallel to all selected banks' Lending Origin Systems (LOS).
+- Real-Time SLA Monitoring: Tracks bank response latency down to the second.
+- Dual Experience: Desktop command center for dealership managers & OEM finance
+  executives, paired with an integrated Mobile Field Companion App for sales
+  representatives on showroom floors.
+- Responsive Drawer & Navigation: Full mobile & desktop adaptive interface.
+
+
+================================================================================
+2. GLOBAL NAVIGATION & APP SHELL
+================================================================================
+
+A. TOP HEADER BAR
+-----------------
+Location: Sticky top bar across all desktop views.
+Elements & Behavior:
+- Hamburger Menu Button: Visible on tablet/mobile screens to open/close the
+  navigation drawer.
+- Universal Search Bar: Full-text filter supporting Lead IDs (e.g., APP-8842-X),
+  customer names, PAN cards, or dealership branches.
+- "Mobile App" Switcher: Immediate toggle between Desktop Management Portal and
+  the Mobile Dealer Companion App simulation.
+- "New Lead" Quick CTA: Primary blue action button navigating straight to the
+  Lead Creation Wizard.
+- Data Export Icon: Opens the global Export Dataset Modal (CSV, Excel, JSON).
+- Notifications Bell: Alerts for pending bank SLAs and incoming customer bids.
+- User Profile Pill: Displays active OEM branch ("Elite Motors HQ - OEM Admin").
+
+B. SIDEBAR NAVIGATION
+---------------------
+Location: Fixed left rail on desktop (w-64); slide-over drawer with backdrop on mobile.
+Navigation Items:
+1. Dashboard Overview
+2. Create New Lead
+3. Live Offer Board (Active Bids badge)
+4. Lead Pipeline Tracker (Count badge)
+5. Connected Bank APIs (Count badge)
+6. Reports & Analytics
+7. Enterprise Settings
+8. Mobile Dealer App (Interactive simulator)
+Footer Section:
+- Live API Gateway Health: Indicator showing connectivity of all 6 banks.
+- Real-time SLA Benchmark: Average speed tracker (14.2s) with daily variance bar.
+
+
+================================================================================
+3. SCREEN-BY-SCREEN FUNCTIONAL BREAKDOWN
+================================================================================
+
+--------------------------------------------------------------------------------
+SCREEN 1: DASHBOARD OVERVIEW (Tab: 'dashboard')
+--------------------------------------------------------------------------------
+Purpose: High-level financial control center for OEM managers to evaluate
+pipeline health, incoming loan volumes, and lending partner conversion.
+
+Step-by-Step Layout & User Journey:
+1. Top Engine Status Banner:
+   - Displays real-time status: "Algorithmic Multi-Lender Dispatch Active".
+   - Provides quick action shortcuts: "Create Customer Lead Dossier" and
+     "View Active Bank Bids".
+2. Four Key Performance Metric Cards:
+   - Total Leads (30D): Cumulative volume across 124 dealerships with +14.8% trend.
+   - Approved / Sanctioned: Real-time approval count (74.2% conversion rate).
+   - Avg Bank SLA Speed: Instant API performance average (14.2 seconds).
+   - Disbursed GTV: Total vehicle finance volume in Crores (₹247.5 Cr).
+3. Active Loan Dossiers Table (Left 8 Columns):
+   - Displays incoming customer applications with ID, vehicle model, dealership,
+     loan amount, and status pill (Draft, Submitted, Under Review, Approved).
+   - "Compare Bids" Button: Instantly binds the selected lead and routes the user
+     to the Live Offer Board.
+4. Connected Bank Quick Health Panel (Right 4 Columns):
+   - Displays real-time status of top banks (HDFC, ICICI, SBI, Axis, Kotak).
+   - Shows base ROI rates, SLA latency, and disbursement speed type (Instant, Fast, Standard).
+   - Smart Routing Engine tip indicating optimal bank profiles for salaried vs. self-employed.
+
+
+--------------------------------------------------------------------------------
+SCREEN 2: CREATE NEW LEAD (Tab: 'create-lead')
+--------------------------------------------------------------------------------
+Purpose: Dealer entry wizard to capture customer KYC, vehicle requirements, and
+broadcast parallel underwriting requests to selected banks.
+
+Step-by-Step Form Sections:
+1. Section 1: Customer Dossier:
+   - Full Customer Name, Mobile Number, Email Address.
+   - PAN Card Number (auto-uppercased font-mono for credit bureau validation).
+   - Date of Birth & City/Region.
+2. Section 2: Vehicle & Loan Configuration:
+   - Vehicle Model: Dropdown of OEM models (Grand Vitara Hybrid, XUV700, Nexon EV, etc.).
+   - Ex-Showroom Price (₹): Automated vehicle list pricing.
+   - Required Loan Amount (₹): Editable loan principal.
+   - Customer Down Payment (₹): Self-financed portion.
+   - Dealership Origin: Assigns local dealership name.
+   - Expected Delivery Date: Sets financing deadline for banks.
+3. Section 3: Select Partner Banks for Parallel Bidding:
+   - Grid displaying all connected banks with individual toggle cards.
+   - Users can select/deselect institutions or broadcast to all 6 simultaneously.
+   - Shows individual institution SLA (e.g., 10s - 45s).
+4. Submission Workflow:
+   - Clicking "Submit & Query Bank APIs" triggers simulated network latency.
+   - Generates a unique Application ID (e.g., FL-29041).
+   - Displays a success confirmation screen with direct navigation into the Live Offer Board.
+
+
+--------------------------------------------------------------------------------
+SCREEN 3: LIVE OFFER BOARD (Tab: 'offer-board')
+--------------------------------------------------------------------------------
+Purpose: Side-by-side comparative bidding arena evaluating received bank offers
+for an individual customer lead.
+
+Step-by-Step Features & Controls:
+1. Customer Context Bar:
+   - Shows active lead name, application ID badge, credit score pill (e.g., 785 Experian Verified).
+   - Displays selected car model and requested loan amount.
+2. Sorting Engine Controls:
+   - "Lowest ROI": Reorders cards by lowest annual percentage rate.
+   - "Lowest EMI": Reorders cards by lowest monthly installment in INR.
+   - "Fastest API SLA": Reorders cards by fastest turnaround time.
+3. Comparative Offer Cards:
+   - Visual Badges: "Best Value", "Lowest ROI & EMI", "Instant Disbursal", "Counter Offer".
+   - Bank Branding: Official institution emblem, name, and response latency timestamp.
+   - Primary Metrics Box: Large typography for fixed ROI (%) and monthly EMI (₹).
+   - Loan Terms Breakdown: Sanctioned amount, tenure (e.g., 5 Years / 60 Months),
+     processing fees, and prepayment/foreclosure terms.
+4. One-Click Deal Actions:
+   - "Select & Generate Sanction": Accepts the chosen offer, marks lead status as
+     'Approved'/'Sanctioned', and prompts confirmation.
+   - "Share with Customer": Copies a customer-formatted offer breakdown directly
+     to clipboard for SMS/WhatsApp/Email dispatch.
+
+
+--------------------------------------------------------------------------------
+SCREEN 4: LEAD PIPELINE TRACKER (Tab: 'lead-tracker')
+--------------------------------------------------------------------------------
+Purpose: Comprehensive operational table to monitor all active and archived
+customer finance applications.
+
+Step-by-Step Features:
+1. Search & Filter Bar:
+   - Real-time search query matching Application ID, Customer Name, Vehicle Model, or Dealer.
+   - Horizontal status filter chips: [All, Draft, Submitted, Under Review, Approved, Sanctioned, Disbursed].
+2. Pipeline Data Table:
+   - Application ID: Unique reference code + creation timestamp.
+   - Customer Profile: Name + phone number.
+   - Vehicle & Dealership: Model name + origin branch.
+   - Loan Amount: Requested loan figure + customer down payment.
+   - Status Pill: Color-coded operational status (Blue, Yellow, Green, Purple).
+   - Bureau Score: Credit rating validation.
+3. Row Actions:
+   - Eye Icon: Opens the full Lead Detail Modal (inspect KYC, change lifecycle status).
+   - "Bids" Button: Quick shortcut to launch the Live Offer Board for that specific lead.
+
+
+--------------------------------------------------------------------------------
+SCREEN 5: CONNECTED BANK APIS (Tab: 'connected-banks')
+--------------------------------------------------------------------------------
+Purpose: Institution relationship management screen to oversee technical health,
+webhook response times, and underwriting criteria.
+
+Step-by-Step Features:
+1. Partner Institution Cards:
+   - Bank Logo & Short Code badge.
+   - API Status: "Direct LOS API Connected" with green pulse dot.
+   - Operational Description: Underwriting specialties (e.g., EV zero-foreclosure,
+     thin-file algorithms, green channel e-KYC).
+   - Quantitative Metrics Grid: Average SLA speed, Base ROI, and Conversion Rate %.
+   - Cumulative Financed GTV: Disbursed volume in Crores.
+2. Health Check Ping:
+   - Interactive button testing webhook heartbeat and returning simulated latency (124ms).
+3. Connect New Partner API:
+   - Header button launching the "Connect New Bank Partner" modal to configure new bank APIs.
+
+
+--------------------------------------------------------------------------------
+SCREEN 6: REPORTS & EXECUTIVE ANALYTICS (Tab: 'reports')
+--------------------------------------------------------------------------------
+Purpose: Strategic analytics engine providing aggregated finance performance,
+conversion funnels, and lender comparison.
+
+Step-by-Step Analytics Modules:
+1. Category Filtering:
+   - Tabs: Lead Summary, Bank Performance, Dealer Performance, Offer Analysis,
+     Response Time, Approval Trends.
+   - Time Period Selector: Last 30 Days, Q3 Analysis, YTD 2026.
+2. Top Executive Summary Metrics:
+   - Total Leads Captured (12,842).
+   - Average Response SLA (14.2m).
+   - Approval Rate (64.8%).
+   - Total Funded Volume (₹248.5 Cr).
+3. Approval Trend Analysis (Bar Chart):
+   - Monthly visual comparative bars showing Approved vs. Declined applications (Jan - Jun).
+4. Product Distribution Breakdown:
+   - Segment volume progress meters: Premier SUV Lease (₹142 Cr), Standard Sedan Loan
+     (₹84 Cr), EV Green Financing (₹56 Cr), Commercial Fleet Lease (₹22 Cr).
+   - Automated Strategic Tip on emerging EV growth opportunities.
+5. Institution Ledger Table:
+   - Searchable ledger listing total bids received, approvals count, disbursed volumes,
+     and conversion percentages per bank.
+
+
+--------------------------------------------------------------------------------
+SCREEN 7: ENTERPRISE SETTINGS (Tab: 'settings')
+--------------------------------------------------------------------------------
+Purpose: Administrative configuration for OEM identity, API webhooks, SLA
+thresholds, and alerts.
+
+Step-by-Step Configuration:
+1. Organization Profile:
+   - Configures OEM Enterprise Name ("Elite Motors Corp").
+   - Subscription Tier display ("Enterprise Tier - Unlimited API Bids").
+2. Webhook & Integration Configuration:
+   - Live Lead Event Webhook URL (for bidirectional CRM integration).
+   - Max Response SLA Alert Threshold (triggers alerts when banks take > 45s).
+3. Notification Preferences:
+   - Toggles for high-value lead email alerts (> ₹30 Lakhs).
+   - Toggles for SMS notifications on SLA breaches.
+4. Save Configuration Action:
+   - Persists settings with instantaneous visual confirmation.
+
+
+--------------------------------------------------------------------------------
+SCREEN 8: MOBILE DEALER APP COMPANION (Tab: 'mobile-app')
+--------------------------------------------------------------------------------
+Purpose: Realistic simulation of the dealer-facing smartphone application used
+by sales executives on the showroom floor.
+
+Step-by-Step Sub-Views & Features:
+1. Top Viewport Controls:
+   - Online / Offline Mode Toggle: Switches to offline caching mode with local draft storage.
+   - Expand Screen / Device Frame Toggle: Allows viewing inside a simulated iPhone body
+     or expanding to standard layout.
+   - Desktop Portal Button: Quick return to the main management system.
+2. Mobile Sub-Tab 1: Home Feed:
+   - Showroom executive daily KPI summary (Today's leads: 12, Sanctions: ₹1.45 Cr).
+   - Field Quick Actions: New Lead, Scan PAN/RC, EMI Calculator.
+   - Active Lead Card with direct telephone trigger (`tel:`) and offer shortcut.
+   - Connected bank rate glance.
+3. Mobile Sub-Tab 2: New Lead & Document OCR Scanner:
+   - Streamlined mobile lead input form.
+   - "Auto-Fill via OCR Scan" Camera Feature: Opens simulated phone camera scanning
+     a customer's PAN or Vehicle RC card. Automatically extracts name, PAN, and model.
+4. Mobile Sub-Tab 3: Real-Time Bank Offers:
+   - Live bid cards displaying ROI, monthly EMI, and sanction amounts.
+   - One-Click WhatsApp Share: Formats a professional quotation string with emojis
+     and copies directly to clipboard for immediate customer chat sharing.
+   - One-Click Offer Acceptance: Locks in the sanction letter.
+5. Mobile Sub-Tab 4: Mobile Pipeline Tracker:
+   - Searchable mobile card list with quick status pills and direct customer phone dialer.
+6. Mobile Sub-Tab 5: Loan & EMI Slider Estimator:
+   - Interactive range sliders for Loan Amount (₹1L - ₹50L), ROI (7.5% - 14%), and
+     Tenure (1 - 7 Years).
+   - Dynamically calculates monthly EMI in real-time.
+   - "Apply with this Loan Amount" button pre-populates the new lead form.
+
+
+================================================================================
+4. MODAL DIALOGS & OVERLAYS
+================================================================================
+
+A. LEAD DETAIL DOSSIER MODAL (`LeadDetailModal.tsx`)
+----------------------------------------------------
+- Triggered by clicking the Eye icon on any lead in the Pipeline Tracker.
+- Displays comprehensive customer dossier: PAN, DOB, contact, city, bureau score.
+- Displays vehicle specs, ex-showroom price, and loan amounts.
+- Lists all received bank bids for that lead.
+- Direct operational actions: "Approve Lead", "Mark Sanctioned", or "Close Dossier".
+
+B. CONNECT NEW BANK PARTNER MODAL (`AddPartnerModal.tsx`)
+---------------------------------------------------------
+- Triggered from the Connected Banks screen.
+- Form inputs: Institution Name, Short Code, Target SLA, Base ROI %, Brand Color.
+- Instantly adds the new lender to the bidding network.
+
+C. GLOBAL DATASET EXPORT MODAL (`ExportModal.tsx`)
+--------------------------------------------------
+- Triggered from the top header download button or Reports screen.
+- Formats: CSV, Excel (.xlsx), or JSON.
+- Filter options: All Time, Today, or Last 30 Days.
+- Triggers browser file download.
+
+================================================================================
+                              END OF DOCUMENTATION
+================================================================================
